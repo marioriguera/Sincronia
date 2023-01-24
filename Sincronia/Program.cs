@@ -1,5 +1,8 @@
 ﻿namespace Sincronia
 {
+    /// <summary>
+    /// Clase principal.
+    /// </summary>
     public class Program
     {
         /// <summary>
@@ -8,7 +11,12 @@
         /// <param name="args">Argumentos.</param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Pruebas de sincronía.");
+
+            // Trabajos con lock.
+            Lock.TrabajoHilos();
+
+            Console.ReadKey();
         }
     }
 }
