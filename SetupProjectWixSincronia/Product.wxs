@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Sincronia_TargetDir=$(var.Sincronia.TargetDir)?>
 	<Product Id="*" Name="SetupProjectWixSincronia" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="f34fdc70-5c6a-4a51-ab41-67dcc6761e87">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -25,6 +25,15 @@
 			<!-- <Component Id="ProductComponent"> -->
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
+			<Component Id="Sincronia.runtimeconfig.json" Guid="be5557e8-19e6-4c2a-8463-18ca15e6802b">
+			  <File Id="Sincronia.runtimeconfig.json" Name="Sincronia.runtimeconfig.json" Source="$(var.Sincronia_TargetDir)Sincronia.runtimeconfig.json" />
+			</Component>
+			<Component Id="Sincronia.dll" Guid="7a9231ec-c3be-4eb4-a9ae-e1beb2fb0f3b">
+			  <File Id="Sincronia.dll" Name="Sincronia.dll" Source="$(var.Sincronia_TargetDir)Sincronia.dll" />
+			</Component>
+			<Component Id="Sincronia.pdb" Guid="0ca0bb35-2fc7-403f-b3fe-4086ca98f141">
+			  <File Id="Sincronia.pdb" Name="Sincronia.pdb" Source="$(var.Sincronia_TargetDir)Sincronia.pdb" />
+			</Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>
