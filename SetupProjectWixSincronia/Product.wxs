@@ -1,39 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Sincronia_TargetDir=$(var.Sincronia.TargetDir)?>
-	<Product Id="*" Name="SetupProjectWixSincronia" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="f34fdc70-5c6a-4a51-ab41-67dcc6761e87">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?define Sincronia_TargetDir=$(var.Sincronia.TargetDir)?>
+	<?define Sincronia_publish_path="D:\DATA_Mario_David\Repositorios\Estudio Sincronia\Sincronia\Sincronia\bin\Release\net6.0\publish\win-x64\"?>
+	<Product Id="4cf0155b-5a50-4a3c-98ba-a50303e1b557"
+			 Name="SincroniaConsole"
+			 Language="1033"
+			 Version="1.0.0.0"
+			 Manufacturer="PROCON SYSTEMS S.A."
+			 UpgradeCode="f34fdc70-5c6a-4a51-ab41-67dcc6761e87">
+		<Package Id="*"
+				 Keywords="Installer"
+				 Description="Sincronia Windows Installer Package"
+				 InstallerVersion="100"
+				 Compressed="yes"
+				 InstallScope="perMachine"
+				 Comments="No comments about that."
+				 Manufacturer="PROCON SYSTEMS S.A."
+				 Languages="1033"
+				 />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		<Media Id="1" Cabinet="SincroniaMedia" EmbedCab="yes" DiskPrompt="CD-ROM #1"/>
+		<Property Id="DiskPrompt" Value="Sincronia 1.0.0 Installation [1]" />
 
-		<Feature Id="ProductFeature" Title="SetupProjectWixSincronia" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
-		</Feature>
-	</Product>
-
-	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="SetupProjectWixSincronia" />
-			</Directory>
-		</Directory>
-	</Fragment>
+				<Directory Id="INSTALLFOLDER" Name="SincroniaInstall" >
+					<Component Id="Sincronia.exe" Guid="7a9231ec-c3be-4eb4-a9ae-e1beb2fb0f3b">
+						<File Id="Sincronia.exe" Name="Sincronia.exe" Source="$(var.Sincronia_publish_path)Sincronia.exe" />
+						<Shortcut Id="DesktopSincronia" Directory="DesktopFolder" Name="Sincronia 1.0" WorkingDirectory="INSTALLFOLDER" Advertise="yes" />
+					</Component>
 
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
-			<Component Id="Sincronia.runtimeconfig.json" Guid="be5557e8-19e6-4c2a-8463-18ca15e6802b">
-			  <File Id="Sincronia.runtimeconfig.json" Name="Sincronia.runtimeconfig.json" Source="$(var.Sincronia_TargetDir)Sincronia.runtimeconfig.json" />
-			</Component>
-			<Component Id="Sincronia.dll" Guid="7a9231ec-c3be-4eb4-a9ae-e1beb2fb0f3b">
-			  <File Id="Sincronia.dll" Name="Sincronia.dll" Source="$(var.Sincronia_TargetDir)Sincronia.dll" />
-			</Component>
-			<Component Id="Sincronia.pdb" Guid="0ca0bb35-2fc7-403f-b3fe-4086ca98f141">
-			  <File Id="Sincronia.pdb" Name="Sincronia.pdb" Source="$(var.Sincronia_TargetDir)Sincronia.pdb" />
-			</Component>
-		</ComponentGroup>
-	</Fragment>
+					<Component Id="Sincronia.pdb" Guid="0ca0bb35-2fc7-403f-b3fe-4086ca98f141">
+						<File Id="Sincronia.pdb" Name="Sincronia.pdb" Source="$(var.Sincronia_publish_path)Sincronia.pdb" />
+					</Component>
+					<Directory Id="CONFIG" Name="Config" >
+						<Component Id="Configuration.ini" Guid="cd58f8e8-427f-4cc1-b2f8-052d39af91f6">
+							<File Id="Configuration.ini" Name="Configuration.ini" Source="$(var.Sincronia_publish_path)Config\Configuration.ini" />
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop" />
+		</Directory>
+
+		<Feature Id="Complete" Title="Sincronia 1.0" Description="The complete package."
+			Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+			<Feature Id="MainProgram" Title="Program" Description="The main executable." Level="1">
+				<ComponentRef Id="Sincronia.exe" />
+				<ComponentRef Id="Sincronia.pdb" />
+				<ComponentRef Id="Configuration.ini" />
+			</Feature>
+		</Feature>
+
+		<UIRef Id="WixUI_Mondo" />
+		<UIRef Id="WixUI_ErrorProgressText" />
+
+	</Product>
 </Wix>
