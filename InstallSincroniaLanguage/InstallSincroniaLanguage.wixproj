@@ -4,9 +4,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>2eaee265-3718-4ebe-aa75-e2ad60354b09</ProjectGuid>
+    <ProjectGuid>128b667c-c41c-42bb-a91e-9cfa8f816271</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>SetupProjectWixSincronia</OutputName>
+    <OutputName>InstallSincroniaLanguage</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -20,41 +20,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BuildMSI.bat" />
-    <Content Include="Images\ProcOnLine.ico" />
-    <Content Include="Licenses\ProcOnline SLA_EN.rtf" />
-    <Content Include="Licenses\ProcOnline SLA_ES.rtf" />
-    <Content Include="SetupProjectWixSincronia.wax" />
-    <Content Include="WiLangId.vbs" />
-    <Content Include="WiSubStg.vbs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sincronia\Sincronia.csproj">
-      <Name>Sincronia</Name>
-      <Project>{1dc8138f-a21b-4a70-9cf4-8379f8518be2}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixToolPath)WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images" />
-    <Folder Include="Licenses" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="de-de.wxl" />
-    <EmbeddedResource Include="en-us.wxl" />
-    <EmbeddedResource Include="es-es.wxl" />
-    <EmbeddedResource Include="sk-sk.wxl" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />

@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<?define Sincronia_TargetDir=$(var.Sincronia.TargetDir)?>
-	<?define Sincronia_publish_path="D:\DATA_Mario_David\Repositorios\Estudio Sincronia\Sincronia\Sincronia\bin\Release\net6.0\publish\win-x64\"?>
+	<?define Sincronia_publish_path="$(var.Sincronia_TargetDir)publish\win-x64\"?>
+	<?define language=loc.LanguageID?>
 	<Product Id="4cf0155b-5a50-4a3c-98ba-a50303e1b557"
 			 Name="SincroniaConsole"
-			 Language="1033"
+			 Language="!(loc.LanguageID)"
 			 Version="1.0.0.0"
 			 Manufacturer="PROCON SYSTEMS S.A."
 			 UpgradeCode="f34fdc70-5c6a-4a51-ab41-67dcc6761e87">
@@ -16,18 +17,23 @@
 				 InstallScope="perMachine"
 				 Comments="No comments about that."
 				 Manufacturer="PROCON SYSTEMS S.A."
-				 Languages="1033"
 				 />
-
 		<Media Id="1" Cabinet="SincroniaMedia" EmbedCab="yes" DiskPrompt="CD-ROM #1"/>
 		<Property Id="DiskPrompt" Value="Sincronia 1.0.0 Installation [1]" />
+		<Property Id="ARPPRODUCTICON" Value="Sincronia.exe" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="SincroniaInstall" >
 					<Component Id="Sincronia.exe" Guid="7a9231ec-c3be-4eb4-a9ae-e1beb2fb0f3b">
-						<File Id="Sincronia.exe" Name="Sincronia.exe" Source="$(var.Sincronia_publish_path)Sincronia.exe" />
-						<Shortcut Id="DesktopSincronia" Directory="DesktopFolder" Name="Sincronia 1.0" WorkingDirectory="INSTALLFOLDER" Advertise="yes" />
+						<File Id="Sincronia.exe" Name="Sincronia.exe" Source="$(var.Sincronia_publish_path)Sincronia.exe"/>
+						<Shortcut Id="DesktopSincronia" Directory="DesktopFolder" Name="Sincronia 1.0" WorkingDirectory="INSTALLFOLDER" Advertise="yes" Icon="Sincronia.exe"/>
+						<Shortcut Id="UninstallProduct"
+                          Name="Uninstall Sincronia"
+                          Description="Uninstalls Sincronia"
+                          Target="[System64Folder]msiexec.exe"
+                          Arguments="/x [ProductCode]"/>
+						<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
 					</Component>
 
 					<Component Id="Sincronia.pdb" Guid="0ca0bb35-2fc7-403f-b3fe-4086ca98f141">
@@ -54,6 +60,13 @@
 
 		<UIRef Id="WixUI_Mondo" />
 		<UIRef Id="WixUI_ErrorProgressText" />
+		<Icon Id="Sincronia.exe" SourceFile="Images\ProcOnLine.ico" />
+
+		<?if loc.LanguageID=loc.LanguageID?>
+		<WixVariable Id="WixUILicenseRtf" Value="Licenses\ProcOnline SLA_ES.rtf" />
+		<?else ?>
+		<WixVariable Id="WixUILicenseRtf" Value="Licenses\ProcOnline SLA_EN.rtf" />
+		<?endif ?>
 
 	</Product>
 </Wix>
