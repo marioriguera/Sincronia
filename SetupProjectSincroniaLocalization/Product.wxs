@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?define Sincronia_TargetDir=$(var.Sincronia.TargetDir)?>
+	<?define Sincronia_publish_path="$(var.Sincronia_TargetDir)publish\win-x64\"?>
+	<Product Id="*" 
+			 Name="!(loc.ApplicationName)" 
+			 Language="!(loc.LanguageID)" 
+			 Version="1.0.0.0" 
+			 Manufacturer="!(loc.ManufacturerName)" 
+			 UpgradeCode="bba653dd-7a05-43d9-818e-26c7fb328aa9"
+			 >
+		<Package InstallerVersion="200" 
+				 Compressed="yes" 
+				 InstallScope="perMachine" />
+
+		<Media Id="1" Cabinet="SincroniaMedia" EmbedCab="yes" DiskPrompt="CD-ROM #1" />
+		<Property Id="DiskPrompt" Value="Sincronia 1.0.0 Installation [1]" />
+		<Property Id="ARPPRODUCTICON" Value="Sincronia.exe" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SincroniaInstall" >
+					<Component Id="Sincronia.exe" Guid="7a9231ec-c3be-4eb4-a9ae-e1beb2fb0f3b">
+						<File Id="Sincronia.exe" Name="Sincronia.exe" Source="$(var.Sincronia_publish_path)Sincronia.exe"/>
+						<Shortcut Id="DesktopSincronia" Directory="DesktopFolder" Name="Sincronia 1.0" WorkingDirectory="INSTALLFOLDER" Advertise="yes" Icon="Sincronia.exe"/>
+						<Shortcut Id="UninstallProduct"
+                          Name="Uninstall Sincronia"
+                          Description="Uninstalls Sincronia"
+                          Target="[System64Folder]msiexec.exe"
+                          Arguments="/x [ProductCode]"/>
+						<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+					</Component>
+
+					<Component Id="Sincronia.pdb" Guid="0ca0bb35-2fc7-403f-b3fe-4086ca98f141">
+						<File Id="Sincronia.pdb" Name="Sincronia.pdb" Source="$(var.Sincronia_publish_path)Sincronia.pdb" />
+					</Component>
+					<Directory Id="CONFIG" Name="Config" >
+						<Component Id="Configuration.ini" Guid="cd58f8e8-427f-4cc1-b2f8-052d39af91f6">
+							<File Id="Configuration.ini" Name="Configuration.ini" Source="$(var.Sincronia_publish_path)Config\Configuration.ini" />
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop" />
+		</Directory>
+
+		<Feature Id="Complete" Title="Sincronia 1.0" Description="The complete package."
+			Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+			<Feature Id="MainProgram" Title="Program" Description="The main executable." Level="1">
+				<ComponentRef Id="Sincronia.exe" />
+				<ComponentRef Id="Sincronia.pdb" />
+				<ComponentRef Id="Configuration.ini" />
+			</Feature>
+		</Feature>
+
+		<UIRef Id="WixUI_Mondo" />
+		<UIRef Id="WixUI_ErrorProgressText" />
+		<Icon Id="Sincronia.exe" SourceFile="Images\ProcOnLine.ico" />
+
+		<WixVariable Id="WixUILicenseRtf" Value="Licenses\ProcOnline SLA_EN.rtf" />
+	</Product>
+</Wix>

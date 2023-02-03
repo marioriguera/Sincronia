@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="es-es" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	<String Id="LanguageID">1034</String>
+	<String Id="ApplicationName">Sincronia en español</String>
+	<String Id="ManufacturerName">PROCON SYSTEMS S.A. español</String>
+	<String Id="LicenseName">ProcOnline SLA_ES.rtf</String>
+</WixLocalization>

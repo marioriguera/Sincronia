@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="de-de" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	<String Id="LanguageID">1031</String>
+	<String Id="ApplicationName">Sincronia en aleman</String>
+	<String Id="ManufacturerName">PROCON SYSTEMS S.A. aleman</String>
+	<String Id="LicenseName">ProcOnline SLA_EN.rtf</String>
+</WixLocalization>
