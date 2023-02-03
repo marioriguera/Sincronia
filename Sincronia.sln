@@ -9,6 +9,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProjectWixSincronia", 
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProjectSincroniaLocalization", "SetupProjectSincroniaLocalization\SetupProjectSincroniaLocalization.wixproj", "{B9877FEC-B6EB-4C5A-9379-AD06AB3244FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectLanguage", "SelectLanguage\SelectLanguage.csproj", "{91F55003-4B65-4E6E-B2FD-04C12EEEA290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,14 @@ Global
 		{B9877FEC-B6EB-4C5A-9379-AD06AB3244FE}.Release|Any CPU.Build.0 = Release|x86
 		{B9877FEC-B6EB-4C5A-9379-AD06AB3244FE}.Release|x86.ActiveCfg = Release|x86
 		{B9877FEC-B6EB-4C5A-9379-AD06AB3244FE}.Release|x86.Build.0 = Release|x86
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Debug|x86.Build.0 = Debug|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Release|x86.ActiveCfg = Release|Any CPU
+		{91F55003-4B65-4E6E-B2FD-04C12EEEA290}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
